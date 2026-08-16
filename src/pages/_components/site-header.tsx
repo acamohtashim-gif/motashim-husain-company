@@ -1,4 +1,6 @@
+import { Moon, Sun } from "lucide-react";
 import { motion } from "motion/react";
+import { useTheme } from "../../hooks/use-theme.ts";
 
 const links = [
   { label: "About", href: "#about" },
@@ -8,6 +10,8 @@ const links = [
 ];
 
 export default function SiteHeader() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -12 }}
@@ -40,6 +44,20 @@ export default function SiteHeader() {
           >
             Get in touch
           </a>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={
+              theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+            }
+            className="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-foreground/20 text-muted-foreground transition-colors hover:bg-foreground hover:text-background cursor-pointer"
+          >
+            {theme === "dark" ? (
+              <Sun className="size-4" />
+            ) : (
+              <Moon className="size-4" />
+            )}
+          </button>
         </nav>
       </div>
     </motion.header>
