@@ -272,7 +272,7 @@ export default function Index() {
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
               className="mt-6 font-serif text-4xl leading-[1.05] tracking-tight text-balance sm:text-6xl"
             >
-              Not just the books. The whole finance function.
+              The complete finance function for growing businesses.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -280,10 +280,10 @@ export default function Index() {
               transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
               className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
             >
-              From bookkeeping and reporting to financial modelling, MIS, and
-              process design — I run the finance function for growing
-              businesses end to end, automating what should be automatic so
-              your decisions run on numbers you actually trust.
+              From bookkeeping and financial reporting to modelling, MIS, and
+              process design, the work stays end to end and automated
+              wherever it should be — so your decisions run on numbers you
+              can actually trust.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
