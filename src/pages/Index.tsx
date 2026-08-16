@@ -6,7 +6,9 @@ import {
   ClipboardCheck,
   Globe2,
   Landmark,
+  LineChart,
   Link2,
+  ListChecks,
   Mail,
   MapPin,
   PieChart,
@@ -15,6 +17,7 @@ import {
   ShieldCheck,
   TrendingUp,
   Users,
+  Workflow,
   Zap,
 } from "lucide-react";
 import AnimatedStat from "./_components/animated-stat.tsx";
@@ -73,16 +76,34 @@ const services = [
       "Invoicing, collections follow-up, and vendor payment cycles kept current, so cash position is never a guess.",
   },
   {
-    icon: Settings2,
-    title: "ERP & automation (QuickBooks / NetSuite)",
+    icon: Workflow,
+    title: "Finance operations management",
     description:
-      "Setup, migration, and automated workflows that take manual re-entry off your team's plate instead of adding to it.",
+      "Day-to-day ownership of the finance function — cash flow monitoring, banking relationships, and vendor coordination — so nothing falls through the cracks between the accountant and the bank.",
+  },
+  {
+    icon: LineChart,
+    title: "Financial modelling & forecasting",
+    description:
+      "Revenue, cash flow, and scenario models built to support real decisions — pricing, hiring, or the next round of funding — not static spreadsheets nobody opens again.",
+  },
+  {
+    icon: Settings2,
+    title: "ERP & workflow automation (QuickBooks / NetSuite)",
+    description:
+      "Setup, migration, and automated workflows — from ERP configuration to Power BI dashboards — that take manual re-entry off your team's plate instead of adding to it.",
   },
   {
     icon: PieChart,
     title: "MIS & management reporting",
     description:
       "Monthly MIS packs built around the decisions you actually make — margin, cash runway, and budget-to-actual, not just a trial balance.",
+  },
+  {
+    icon: ListChecks,
+    title: "Process design & documentation",
+    description:
+      "Close calendars, approval workflows, and controls documented and built once — so the process holds whether or not I'm the one running it that month.",
   },
   {
     icon: Globe2,
