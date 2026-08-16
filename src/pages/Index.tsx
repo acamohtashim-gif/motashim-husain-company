@@ -275,7 +275,10 @@ export default function Index() {
                 className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-all hover:scale-[1.03] hover:opacity-90 cursor-pointer"
               >
                 Book a consultation
-                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
               </a>
               <a
                 href="#services"
@@ -290,7 +293,7 @@ export default function Index() {
               transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
               className="mt-8 flex items-center gap-2 text-sm text-muted-foreground"
             >
-              <MapPin className="size-4" />
+              <MapPin aria-hidden="true" className="size-4" />
               Serving clients across India, the US, and the Middle East
             </motion.p>
           </div>
@@ -304,6 +307,9 @@ export default function Index() {
             <img
               src={PORTRAIT_URL}
               alt="Portrait of CA Motashim Badshah"
+              width={640}
+              height={640}
+              fetchPriority="high"
               className="aspect-square w-40 rounded-full object-cover grayscale transition-[filter] duration-700 hover:grayscale-0 md:w-full md:rounded-sm"
             />
             <p className="mt-4 hidden font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:block">
@@ -402,7 +408,7 @@ export default function Index() {
                 whileHover={cardHover}
                 className="relative bg-background p-7"
               >
-                <service.icon className="size-5 text-accent" />
+                <service.icon aria-hidden="true" className="size-5 text-accent" />
                 <h3 className="mt-5 font-serif text-xl tracking-tight">
                   {service.title}
                 </h3>
@@ -417,7 +423,7 @@ export default function Index() {
         {/* Why us */}
         <Section
           eyebrow="Why work with me"
-          title="More than another filing service"
+          title="What working together looks like"
           className="border-t border-border/60"
         >
           <motion.div
@@ -429,7 +435,7 @@ export default function Index() {
           >
             {whyUs.map((item) => (
               <motion.div key={item.title} variants={itemVariants} className="flex gap-4">
-                <item.icon className="mt-1 size-5 shrink-0 text-accent" />
+                <item.icon aria-hidden="true" className="mt-1 size-5 shrink-0 text-accent" />
                 <div>
                   <h3 className="font-serif text-xl tracking-tight">
                     {item.title}
@@ -567,7 +573,7 @@ export default function Index() {
               href="mailto:aca.mohtashim@gmail.com"
               className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-opacity hover:opacity-90 cursor-pointer"
             >
-              <Mail className="size-4" />
+              <Mail aria-hidden="true" className="size-4" />
               Email me
             </a>
             <a
@@ -576,12 +582,15 @@ export default function Index() {
               rel="noreferrer"
               className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
             >
-              <Link2 className="size-4" />
+              <Link2 aria-hidden="true" className="size-4" />
               LinkedIn
-              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight
+                aria-hidden="true"
+                className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </a>
             <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-              <MapPin className="size-4" />
+              <MapPin aria-hidden="true" className="size-4" />
               Maharashtra, India
             </span>
           </div>

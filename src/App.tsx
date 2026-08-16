@@ -1,5 +1,10 @@
+import { MotionConfig } from "motion/react";
 import Index from "./pages/Index.tsx";
 
 export default function App() {
-  return <Index />;
+  return (
+    <MotionConfig reducedMotion="user">
+      <Index />
+    </MotionConfig>
+  );
 }
