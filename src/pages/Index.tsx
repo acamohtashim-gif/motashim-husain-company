@@ -223,7 +223,7 @@ export default function Index() {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground"
             >
-              Chartered Accountant &middot; Nashik, India
+              Chartered Accountant
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -231,7 +231,7 @@ export default function Index() {
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
               className="mt-6 font-serif text-4xl leading-[1.05] tracking-tight text-balance sm:text-6xl"
             >
-              Books you can trust. Closed on time, every month.
+              Precise books. Delivered on schedule, every month.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -513,7 +513,7 @@ export default function Index() {
             </a>
             <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="size-4" />
-              Nashik, Maharashtra, India
+              Maharashtra, India
             </span>
           </div>
         </div>
