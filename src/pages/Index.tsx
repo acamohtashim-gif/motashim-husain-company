@@ -477,7 +477,7 @@ export default function Index() {
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <a
-              href="mailto:hello@example.com"
+              href="mailto:aca.mohtashim@gmail.com"
               className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-opacity hover:opacity-90 cursor-pointer"
             >
               <Mail className="size-4" />
