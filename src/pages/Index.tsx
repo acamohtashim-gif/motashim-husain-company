@@ -272,7 +272,7 @@ export default function Index() {
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
               className="mt-6 font-serif text-4xl leading-[1.05] tracking-tight text-balance sm:text-6xl"
             >
-              Precise books. Delivered on schedule, every month.
+              Not just the books. The whole finance function.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -280,10 +280,10 @@ export default function Index() {
               transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
               className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
             >
-              I run accounting and reporting for growing businesses
-              efficiently, through disciplined process and automation that
-              solve the problems slowing your books down — and drive the
-              efficiency your decisions depend on.
+              From bookkeeping and reporting to financial modelling, MIS, and
+              process design — I run the finance function for growing
+              businesses end to end, automating what should be automatic so
+              your decisions run on numbers you actually trust.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
