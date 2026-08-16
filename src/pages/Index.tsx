@@ -5,14 +5,17 @@ import {
   CalendarCheck,
   ClipboardCheck,
   Globe2,
+  Landmark,
   Link2,
   Mail,
   MapPin,
+  PieChart,
   ReceiptText,
   Settings2,
   ShieldCheck,
   TrendingUp,
   Users,
+  Zap,
 } from "lucide-react";
 import Section from "./_components/section.tsx";
 import SiteFooter from "./_components/site-footer.tsx";
@@ -32,32 +35,44 @@ const stats = [
 
 const services = [
   {
+    icon: ClipboardCheck,
+    title: "Outsourced bookkeeping & reconciliation",
+    description:
+      "Backlogs brought current, every account reconciled, and a monthly close calendar that holds — run as an ongoing engagement, not a one-off filing.",
+  },
+  {
     icon: Building2,
-    title: "Construction & business accounting",
+    title: "Construction & project accounting",
     description:
       "Job costing, WIP schedules, and project accounting built for how contractors actually work — by site, by stage, by margin.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Bookkeeping clean-up & finalisation",
+    icon: Landmark,
+    title: "Receivables & payables management",
     description:
-      "Backlogs brought current, every account reconciled, and a monthly close calendar that holds once we hand it over.",
+      "Invoicing, collections follow-up, and vendor payment cycles kept current, so cash position is never a guess.",
   },
   {
     icon: Settings2,
-    title: "ERP & software implementation",
+    title: "ERP & automation (QuickBooks / NetSuite)",
     description:
-      "QuickBooks and NetSuite setup, migration, and automation — designed to take manual work off your team, not add to it.",
+      "Setup, migration, and automated workflows that take manual re-entry off your team's plate instead of adding to it.",
+  },
+  {
+    icon: PieChart,
+    title: "MIS & management reporting",
+    description:
+      "Monthly MIS packs built around the decisions you actually make — margin, cash runway, and budget-to-actual, not just a trial balance.",
   },
   {
     icon: Globe2,
-    title: "Reporting under IAS / IFRS",
+    title: "IAS / IFRS financial reporting",
     description:
-      "Management reporting, MIS packs, and financial statements prepared to international standards, ready for boards, investors, and auditors.",
+      "Financial statements prepared to international standards, ready for boards, investors, and auditors.",
   },
   {
     icon: ReceiptText,
-    title: "Tax & audit support",
+    title: "Tax & GST audit support",
     description:
       "Income tax and GST audits for proprietors and partnerships, handled end to end. You sign; I handle the rest.",
   },
@@ -71,10 +86,10 @@ const services = [
 
 const whyUs = [
   {
-    icon: Globe2,
-    title: "Overseas clientele",
+    icon: Zap,
+    title: "Automation, not more manual entry",
     description:
-      "US and Middle East clients alongside Indian businesses, reported to the standard each market expects.",
+      "Reconciliations, GST filings, and reporting run on documented workflows in QuickBooks and NetSuite — which is how filing turnaround got cut by 70%, not by working longer hours.",
   },
   {
     icon: CalendarCheck,
@@ -90,9 +105,9 @@ const whyUs = [
   },
   {
     icon: Users,
-    title: "Owner-level attention",
+    title: "Owner-level attention, without agency overhead",
     description:
-      "You work directly with a Chartered Accountant, not a rotating queue of junior staff.",
+      "Direct access to a Chartered Accountant for every engagement — not a rotating queue of junior staff, and not the layers of a large outsourcing firm.",
   },
 ];
 
@@ -224,10 +239,11 @@ export default function Index() {
               transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
               className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
             >
-              Contractors and growing businesses come to me when the numbers
-              stop making sense. We clean up what&apos;s there, build a close
-              calendar that holds, and turn reporting into something you
-              actually use to decide.
+              Contractors and growing businesses outsource their books to me
+              so they can stay focused on running the business, not
+              reconciling it. I bring the automation and reporting discipline
+              of a larger firm, minus the overhead — so the numbers are
+              accurate, current, and something you actually use to decide.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -316,10 +332,12 @@ export default function Index() {
             </div>
             <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
               <p>
-                Most engagements begin with a clean-up and end with a
-                reporting rhythm you can plan around. I work hands-on in
-                QuickBooks and NetSuite, report under IAS and IFRS, and serve
-                US and international clients alongside Indian businesses.
+                Most of what makes books unreliable is process, not people —
+                so every engagement is built around automation and a
+                documented monthly rhythm, not manual re-entry. I work
+                hands-on in QuickBooks and NetSuite, report under IAS and
+                IFRS, and serve US and international clients alongside Indian
+                businesses.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 {tools.map((tool) => (
@@ -340,10 +358,10 @@ export default function Index() {
           id="services"
           eyebrow="Our services"
           title="What I do for clients"
-          intro="Six focused engagements, each built to leave your books in better shape than a one-off filing ever could."
+          intro="Ongoing, outsourced engagements built on automation and a documented process — each one designed to leave your books in better shape than a one-off filing ever could."
           className="border-t border-border/60"
         >
-          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service) => (
               <div key={service.title} className="bg-background p-7">
                 <service.icon className="size-5 text-accent" />
