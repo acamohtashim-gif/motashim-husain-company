@@ -17,9 +17,29 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import AnimatedStat from "./_components/animated-stat.tsx";
 import Section from "./_components/section.tsx";
 import SiteFooter from "./_components/site-footer.tsx";
 import SiteHeader from "./_components/site-header.tsx";
+
+const gridVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
+
+const cardHover = {
+  y: -4,
+  transition: { type: "spring" as const, stiffness: 320, damping: 22 },
+};
 
 const LINKEDIN_URL =
   "https://www.linkedin.com/in/ca-motashim-badshah-580121120/";
@@ -252,14 +272,14 @@ export default function Index() {
             >
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-opacity hover:opacity-90 cursor-pointer"
+                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-all hover:scale-[1.03] hover:opacity-90 cursor-pointer"
               >
                 Book a consultation
                 <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
               <a
                 href="#services"
-                className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-5 py-2.5 text-sm transition-colors hover:bg-foreground hover:text-background cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-5 py-2.5 text-sm transition-all hover:scale-[1.03] hover:bg-foreground hover:text-background cursor-pointer"
               >
                 See services
               </a>
@@ -284,7 +304,7 @@ export default function Index() {
             <img
               src={PORTRAIT_URL}
               alt="Portrait of CA Motashim Badshah"
-              className="aspect-square w-40 rounded-full object-cover grayscale md:w-full md:rounded-sm"
+              className="aspect-square w-40 rounded-full object-cover grayscale transition-[filter] duration-700 hover:grayscale-0 md:w-full md:rounded-sm"
             />
             <p className="mt-4 hidden font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:block">
               CA Motashim Badshah &middot; Founder
@@ -295,16 +315,24 @@ export default function Index() {
 
       {/* Stat strip */}
       <section className="border-b border-border/60 bg-secondary/40">
-        <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
+        <motion.dl
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={gridVariants}
+          className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4"
+        >
           {stats.map((stat) => (
-            <div key={stat.label}>
-              <dt className="font-serif text-4xl tracking-tight">{stat.value}</dt>
+            <motion.div key={stat.label} variants={itemVariants}>
+              <dt className="font-serif text-4xl tracking-tight">
+                <AnimatedStat value={stat.value} />
+              </dt>
               <dd className="mt-2 text-sm leading-snug text-muted-foreground">
                 {stat.label}
               </dd>
-            </div>
+            </motion.div>
           ))}
-        </dl>
+        </motion.dl>
       </section>
 
       <main className="mx-auto max-w-6xl px-6">
@@ -360,9 +388,20 @@ export default function Index() {
           intro="Ongoing, outsourced engagements built on automation and a documented process — each one designed to leave your books in better shape than a one-off filing ever could."
           className="border-t border-border/60"
         >
-          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={gridVariants}
+            className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-4"
+          >
             {services.map((service) => (
-              <div key={service.title} className="bg-background p-7">
+              <motion.div
+                key={service.title}
+                variants={itemVariants}
+                whileHover={cardHover}
+                className="relative bg-background p-7"
+              >
                 <service.icon className="size-5 text-accent" />
                 <h3 className="mt-5 font-serif text-xl tracking-tight">
                   {service.title}
@@ -370,9 +409,9 @@ export default function Index() {
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </Section>
 
         {/* Why us */}
@@ -381,9 +420,15 @@ export default function Index() {
           title="More than another filing service"
           className="border-t border-border/60"
         >
-          <div className="grid gap-10 sm:grid-cols-2">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={gridVariants}
+            className="grid gap-10 sm:grid-cols-2"
+          >
             {whyUs.map((item) => (
-              <div key={item.title} className="flex gap-4">
+              <motion.div key={item.title} variants={itemVariants} className="flex gap-4">
                 <item.icon className="mt-1 size-5 shrink-0 text-accent" />
                 <div>
                   <h3 className="font-serif text-xl tracking-tight">
@@ -393,9 +438,9 @@ export default function Index() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </Section>
 
         {/* Process */}
@@ -404,9 +449,20 @@ export default function Index() {
           title="From messy books to a close you can plan around"
           className="border-t border-border/60"
         >
-          <ol className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <motion.ol
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={gridVariants}
+            className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-4"
+          >
             {process.map((item) => (
-              <li key={item.step} className="bg-background p-7">
+              <motion.li
+                key={item.step}
+                variants={itemVariants}
+                whileHover={cardHover}
+                className="bg-background p-7"
+              >
                 <span className="font-mono text-xs tracking-[0.25em] text-accent">
                   {item.step}
                 </span>
@@ -416,9 +472,9 @@ export default function Index() {
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
-              </li>
+              </motion.li>
             ))}
-          </ol>
+          </motion.ol>
         </Section>
 
         {/* Experience */}
@@ -428,10 +484,16 @@ export default function Index() {
           title="Where the experience comes from"
           className="border-t border-border/60"
         >
-          <ul>
+          <motion.ul
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={gridVariants}
+          >
             {experience.map((item) => (
-              <li
+              <motion.li
                 key={item.company}
+                variants={itemVariants}
                 className="border-b border-border/60 py-7 first:border-t first:border-border/60"
               >
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
@@ -448,17 +510,25 @@ export default function Index() {
                 <p className="mt-3 max-w-3xl leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </Section>
 
         {/* Credentials */}
         <Section eyebrow="Credentials" title="Qualifications" className="border-t border-border/60">
-          <ul className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2">
+          <motion.ul
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={gridVariants}
+            className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2"
+          >
             {credentials.map((item) => (
-              <li
+              <motion.li
                 key={item.title}
+                variants={itemVariants}
+                whileHover={cardHover}
                 className="flex items-baseline justify-between gap-6 bg-background p-7"
               >
                 <div>
@@ -472,9 +542,9 @@ export default function Index() {
                 <span className="shrink-0 font-mono text-xs text-muted-foreground">
                   {item.year}
                 </span>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </Section>
       </main>
 
