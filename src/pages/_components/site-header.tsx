@@ -1,65 +1,74 @@
+import { useState } from "react";
 import { Moon, Sun } from "lucide-react";
-import { motion } from "motion/react";
+import { useNavScroll } from "../../hooks/use-nav-scroll.ts";
 import { useTheme } from "../../hooks/use-theme.ts";
 
 const links = [
   { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
   { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "#services" },
 ];
+
+const sectionIds = ["about", "experience", "services", "contact"];
 
 export default function SiteHeader() {
   const { theme, toggleTheme } = useTheme();
+  const [open, setOpen] = useState(false);
+  const { scrolled, active } = useNavScroll(sectionIds);
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md"
-    >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#top" className="flex flex-col leading-tight cursor-pointer">
-          <span className="font-serif text-base tracking-tight sm:text-xl">
-            Motashim Husain &amp; Company
+    <header className={`rd-nav${scrolled ? " scrolled" : ""}`}>
+      <div className="wrap">
+        <a href="#top" className="rd-logo cursor-pointer">
+          <span className="name">
+            Motashim Husain <em>&amp; Co.</em>
           </span>
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground sm:text-[0.65rem]">
-            Chartered Accountant
-          </span>
+          <span className="role">Chartered Accountant</span>
         </a>
-        <nav className="flex items-center gap-6">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:block cursor-pointer"
-            >
-              {link.label}
+        <div className="nav-right">
+          <nav className={`nav-links${open ? " open" : ""}`}>
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={
+                  active === link.href.slice(1) ? "active cursor-pointer" : "cursor-pointer"
+                }
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a href="#contact" className="cta cursor-pointer" onClick={() => setOpen(false)}>
+              Contact
             </a>
-          ))}
-          <a
-            href="#contact"
-            className="shrink-0 rounded-full border border-foreground/20 px-4 py-1.5 text-sm whitespace-nowrap transition-colors hover:bg-foreground hover:text-background cursor-pointer"
-          >
-            Get in touch
-          </a>
+          </nav>
           <button
             type="button"
             onClick={toggleTheme}
             aria-label={
               theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
             }
-            className="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-foreground/20 text-muted-foreground transition-colors hover:bg-foreground hover:text-background cursor-pointer"
+            className="rd-toggle cursor-pointer"
           >
             {theme === "dark" ? (
-              <Sun className="size-4" />
+              <Sun aria-hidden="true" size={17} />
             ) : (
-              <Moon className="size-4" />
+              <Moon aria-hidden="true" size={17} />
             )}
           </button>
-        </nav>
+          <button
+            type="button"
+            className={`burger${open ? " open" : ""}`}
+            aria-label="Menu"
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
-    </motion.header>
+    </header>
   );
 }

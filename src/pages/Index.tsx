@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import {
   ArrowUpRight,
+  BarChart3,
   Building2,
-  CalendarCheck,
+  Calculator,
   ClipboardCheck,
   Globe2,
   Landmark,
@@ -11,19 +12,33 @@ import {
   ListChecks,
   Mail,
   MapPin,
+  NotebookText,
   PieChart,
   ReceiptText,
   Settings2,
   ShieldCheck,
   TrendingUp,
-  Users,
   Workflow,
-  Zap,
 } from "lucide-react";
 import AnimatedStat from "./_components/animated-stat.tsx";
-import Section from "./_components/section.tsx";
+import BackToTop from "./_components/back-to-top.tsx";
+import CustomCursor from "./_components/custom-cursor.tsx";
+import DoodleUnderline from "./_components/doodle-underline.tsx";
+import FilmGrain from "./_components/film-grain.tsx";
+import IntroSplash from "./_components/intro-splash.tsx";
+import KineticText from "./_components/kinetic-text.tsx";
+import Magnetic from "./_components/magnetic.tsx";
+import ScrollProgress from "./_components/scroll-progress.tsx";
 import SiteFooter from "./_components/site-footer.tsx";
 import SiteHeader from "./_components/site-header.tsx";
+import Sparkle from "./_components/sparkle.tsx";
+import Ticker from "./_components/ticker.tsx";
+import ToolCard from "./_components/tool-card.tsx";
+
+const LINKEDIN_URL =
+  "https://www.linkedin.com/in/ca-motashim-badshah-580121120/";
+
+const PORTRAIT_URL = "/portrait.jpg";
 
 const gridVariants = {
   hidden: {},
@@ -39,15 +54,15 @@ const itemVariants = {
   },
 };
 
-const cardHover = {
-  y: -4,
-  transition: { type: "spring" as const, stiffness: 320, damping: 22 },
-};
-
-const LINKEDIN_URL =
-  "https://www.linkedin.com/in/ca-motashim-badshah-580121120/";
-
-const PORTRAIT_URL = "/portrait.jpg";
+const tickerItems = [
+  "Bookkeeping & Reconciliation",
+  "Financial Modelling",
+  "Finance Operations",
+  "MIS & Reporting",
+  "Process Design",
+  "Automation",
+  "Tax & GST Audit",
+];
 
 const stats = [
   { value: "13+", label: "Years across practice, banking, and industry" },
@@ -125,60 +140,6 @@ const services = [
   },
 ];
 
-const whyUs = [
-  {
-    icon: Zap,
-    title: "Automation, not more manual entry",
-    description:
-      "Reconciliations, GST filings, and reporting run on documented workflows in QuickBooks and NetSuite — which is how filing turnaround got cut by 70%, not by working longer hours.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "A close calendar that holds",
-    description:
-      "Books closed on a fixed monthly rhythm, so reporting arrives before decisions are due, not weeks after.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Audit-ready by default",
-    description:
-      "Every account reconciled and documented, so tax and statutory audits stop being a scramble.",
-  },
-  {
-    icon: Users,
-    title: "Owner-level attention, without agency overhead",
-    description:
-      "Direct access to a Chartered Accountant for every engagement — not a rotating queue of junior staff, and not the layers of a large outsourcing firm.",
-  },
-];
-
-const process = [
-  {
-    step: "01",
-    title: "Diagnostic call",
-    description:
-      "Tell me where things stand — no prepared numbers required. We scope the clean-up and the timeline.",
-  },
-  {
-    step: "02",
-    title: "Clean-up",
-    description:
-      "Backlogs brought current, accounts reconciled, and the opening position agreed and documented.",
-  },
-  {
-    step: "03",
-    title: "Close calendar",
-    description:
-      "A fixed monthly close with clear cut-offs, so books land on the same date every month.",
-  },
-  {
-    step: "04",
-    title: "Reporting you use",
-    description:
-      "MIS packs and statements under IAS/IFRS, built around the decisions you actually make.",
-  },
-];
-
 const experience = [
   {
     period: "2020 — Present",
@@ -247,380 +208,371 @@ const credentials = [
   },
 ];
 
-const tools = ["QuickBooks", "NetSuite", "IAS / IFRS", "GST", "Power BI", "Tally"];
+const toolGroups = [
+  {
+    icon: Landmark,
+    title: "Accounting Software",
+    items: "QuickBooks · NetSuite",
+  },
+  {
+    icon: NotebookText,
+    title: "Bookkeeping",
+    items: "Tally",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Compliance & Reporting",
+    items: "IAS / IFRS · GST",
+  },
+  {
+    icon: BarChart3,
+    title: "Analytics",
+    items: "Power BI dashboards & data modelling",
+  },
+  {
+    icon: Calculator,
+    title: "Financial Modelling",
+    items: "Scenario, forecast & working-capital models",
+  },
+  {
+    icon: Workflow,
+    title: "Process & Automation",
+    items: "Documented close calendars, automated workflows",
+  },
+];
 
 export default function Index() {
   return (
     <div id="top" className="min-h-screen bg-background">
+      <IntroSplash />
+      <FilmGrain />
+      <ScrollProgress />
+      <CustomCursor />
       <SiteHeader />
 
       {/* Hero */}
-      <section className="border-b border-border/60">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 py-20 md:grid-cols-[1.2fr_1fr] md:py-28">
-          <div>
+      <section className="rd-hero">
+        <div className="wrap hero-grid">
+          <div className="hero-text">
+            <Sparkle style={{ width: 22, height: 22, top: -34, left: 1 }} />
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground"
+              className="rd-eyebrow"
             >
               Chartered Accountant
             </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="mt-6 font-serif text-4xl leading-[1.05] tracking-tight text-balance sm:text-6xl"
-            >
-              The complete finance function for growing businesses.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-              className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
-            >
+            <KineticText as="h1" className="hero-h1">
+              {"The complete "}
+              <span className="mark">
+                <em>finance function</em>
+                <DoodleUnderline />
+              </span>
+              {" for growing businesses."}
+            </KineticText>
+            <p className="hero-lead">
               From bookkeeping and financial reporting to modelling, MIS, and
               process design, the work stays end to end and automated
-              wherever it should be — so your decisions run on numbers you
-              can actually trust.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-              className="mt-9 flex flex-wrap items-center gap-4"
-            >
-              <a
-                href="#contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-all hover:scale-[1.03] hover:opacity-90 cursor-pointer"
-              >
+              wherever it should be — so your decisions run on{" "}
+              <b>numbers you can actually trust</b>.
+            </p>
+            <div className="hero-actions">
+              <Magnetic href="#contact" className="rd-btn">
                 Book a consultation
-                <ArrowUpRight
-                  aria-hidden="true"
-                  className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-5 py-2.5 text-sm transition-all hover:scale-[1.03] hover:bg-foreground hover:text-background cursor-pointer"
-              >
-                See services
-              </a>
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
-              className="mt-8 flex items-center gap-2 text-sm text-muted-foreground"
-            >
-              <MapPin aria-hidden="true" className="size-4" />
-              Serving clients across India, the US, and the Middle East
-            </motion.p>
+                <ArrowUpRight aria-hidden="true" size={16} />
+              </Magnetic>
+              <Magnetic href="#about" className="rd-btn ghost">
+                Read more
+              </Magnetic>
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="order-first md:order-none"
-          >
+          <figure className="hero-photo">
             <img
               src={PORTRAIT_URL}
               alt="Portrait of CA Motashim Badshah"
               width={640}
               height={640}
               fetchPriority="high"
-              className="aspect-square w-40 rounded-full object-cover grayscale transition-[filter] duration-700 hover:grayscale-0 md:w-full md:rounded-sm"
             />
-            <p className="mt-4 hidden font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:block">
-              CA Motashim Badshah &middot; Founder
-            </p>
-          </motion.div>
+            <span className="sheen" aria-hidden="true" />
+            <div className="tagchip">
+              CA <b>Motashim Badshah</b> · Founder
+            </div>
+          </figure>
         </div>
       </section>
 
-      {/* Stat strip */}
-      <section className="border-b border-border/60 bg-secondary/40">
-        <motion.dl
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
-          variants={gridVariants}
-          className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4"
-        >
-          {stats.map((stat) => (
-            <motion.div key={stat.label} variants={itemVariants}>
-              <dt className="font-serif text-4xl tracking-tight">
-                <AnimatedStat value={stat.value} />
-              </dt>
-              <dd className="mt-2 text-sm leading-snug text-muted-foreground">
-                {stat.label}
-              </dd>
-            </motion.div>
-          ))}
-        </motion.dl>
-      </section>
+      <Ticker items={tickerItems} />
 
-      <main className="mx-auto max-w-6xl px-6">
-        {/* About */}
-        <Section
-          id="about"
-          eyebrow="About"
-          title="Thirteen years on most sides of the numbers"
-        >
-          <div className="grid gap-12 md:grid-cols-2">
-            <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
-              <p>
-                Public practice, corporate finance, treasury in Dubai, and
-                project accounting for a Kuwait government contract. That range
-                is the point — I have seen how books break, and I know what a
+      {/* About */}
+      <section id="about" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">01</span>
+            <span className="label">About</span>
+            <span className="line" />
+          </div>
+          <div className="about-grid">
+            <div>
+              <p className="about-lead">
+                <span className="dropcap">T</span>hirteen years across public
+                practice, corporate finance, treasury in Dubai, and project
+                accounting for a Kuwait government contract. That range is
+                the point — I have seen how books break, and I know what a
                 clean set looks like when it is done right.
               </p>
-              <p>
+              <p className="about-body">
                 Today I run Motashim Husain &amp; Company. My clients are
                 owners who need their numbers to be accurate, timely, and
                 useful — not a file that arrives three weeks late and raises
                 more questions than it answers.
               </p>
-            </div>
-            <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
-              <p>
+              <p className="about-body">
                 Most of what makes books unreliable is process, not people —
                 so every engagement is built around automation and a
-                documented monthly rhythm, not manual re-entry. I work
-                hands-on in QuickBooks and NetSuite, report under IAS and
-                IFRS, and serve US and international clients alongside Indian
-                businesses.
+                documented monthly rhythm, not manual re-entry.
               </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                {tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className="rounded-full border border-border px-3 py-1 font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
             </div>
-          </div>
-        </Section>
-
-        {/* Services */}
-        <Section
-          id="services"
-          eyebrow="Our services"
-          title="What I do for clients"
-          intro="Ongoing, outsourced engagements built on automation and a documented process — each one designed to leave your books in better shape than a one-off filing ever could."
-          className="border-t border-border/60"
-        >
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={gridVariants}
-            className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {services.map((service) => (
-              <motion.div
-                key={service.title}
-                variants={itemVariants}
-                whileHover={cardHover}
-                className="relative bg-background p-7"
-              >
-                <service.icon aria-hidden="true" className="size-5 text-accent" />
-                <h3 className="mt-5 font-serif text-xl tracking-tight">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {service.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </Section>
-
-        {/* Why us */}
-        <Section
-          eyebrow="Why work with me"
-          title="What working together looks like"
-          className="border-t border-border/60"
-        >
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={gridVariants}
-            className="grid gap-10 sm:grid-cols-2"
-          >
-            {whyUs.map((item) => (
-              <motion.div key={item.title} variants={itemVariants} className="flex gap-4">
-                <item.icon aria-hidden="true" className="mt-1 size-5 shrink-0 text-accent" />
+            <aside className="about-side">
+              <dl>
                 <div>
-                  <h3 className="font-serif text-xl tracking-tight">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
+                  <dt>Role</dt>
+                  <dd>Chartered Accountant</dd>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </Section>
+                <div>
+                  <dt>Practice</dt>
+                  <dd>Motashim Husain &amp; Company</dd>
+                </div>
+                <div>
+                  <dt>Regions</dt>
+                  <dd>India · US · Middle East</dd>
+                </div>
+              </dl>
+            </aside>
+          </div>
+        </div>
+      </section>
 
-        {/* Process */}
-        <Section
-          eyebrow="How it works"
-          title="From messy books to a close you can plan around"
-          className="border-t border-border/60"
-        >
-          <motion.ol
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={gridVariants}
-            className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {process.map((item) => (
-              <motion.li
-                key={item.step}
-                variants={itemVariants}
-                whileHover={cardHover}
-                className="bg-background p-7"
-              >
-                <span className="font-mono text-xs tracking-[0.25em] text-accent">
-                  {item.step}
-                </span>
-                <h3 className="mt-4 font-serif text-xl tracking-tight">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-              </motion.li>
-            ))}
-          </motion.ol>
-        </Section>
-
-        {/* Experience */}
-        <Section
-          id="experience"
-          eyebrow="Experience"
-          title="Where the experience comes from"
-          className="border-t border-border/60"
-        >
-          <motion.ul
+      {/* Experience */}
+      <section id="experience" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">02</span>
+            <span className="label">Experience</span>
+            <span className="line" />
+            <Sparkle style={{ width: 18, height: 18, top: -13, right: 0 }} />
+          </div>
+          <KineticText as="h2" className="sec-title">
+            {"From public practice to "}
+            <span className="mark">
+              <em>treasury and banking.</em>
+              <DoodleUnderline />
+            </span>
+          </KineticText>
+          <motion.div
+            className="journey"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.1 }}
             variants={gridVariants}
           >
-            {experience.map((item) => (
-              <motion.li
-                key={item.company}
-                variants={itemVariants}
-                className="border-b border-border/60 py-7 first:border-t first:border-border/60"
-              >
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="font-serif text-2xl tracking-tight">
-                    {item.role}
-                  </h3>
-                  <span className="shrink-0 font-mono text-xs text-muted-foreground">
-                    {item.period}
-                  </span>
-                </div>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {item.company}
-                </p>
-                <p className="mt-3 max-w-3xl leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-              </motion.li>
-            ))}
-          </motion.ul>
-        </Section>
-
-        {/* Credentials */}
-        <Section eyebrow="Credentials" title="Qualifications" className="border-t border-border/60">
-          <motion.ul
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={gridVariants}
-            className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2"
-          >
-            {credentials.map((item) => (
-              <motion.li
-                key={item.title}
-                variants={itemVariants}
-                whileHover={cardHover}
-                className="flex items-baseline justify-between gap-6 bg-background p-7"
-              >
+            {experience.map((item, i) => (
+              <motion.div className="milestone" key={item.company} variants={itemVariants}>
+                <div className="when">{item.period}</div>
                 <div>
-                  <p className="font-serif text-lg tracking-tight">
-                    {item.title}
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {item.issuer}
-                  </p>
+                  <h3>{item.role}</h3>
+                  <p className="company">{item.company}</p>
+                  <p>{item.description}</p>
                 </div>
-                <span className="shrink-0 font-mono text-xs text-muted-foreground">
-                  {item.year}
-                </span>
-              </motion.li>
+                <div className="idx">{String(i + 1).padStart(2, "0")}</div>
+              </motion.div>
             ))}
-          </motion.ul>
-        </Section>
-      </main>
+          </motion.div>
+        </div>
+      </section>
 
-      {/* Contact */}
-      <section id="contact" className="border-t border-border/60 bg-secondary/40">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Contact
-          </span>
-          <h2 className="mt-4 max-w-2xl font-serif text-3xl leading-tight tracking-tight text-balance sm:text-5xl">
-            Late reports and messy books are fixable. Let&apos;s start there.
-          </h2>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Tell me where things stand — no prepared numbers required. A short
-            call is usually enough to see what the clean-up involves and how
-            quickly we can get you current.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <a
-              href="mailto:aca.mohtashim@gmail.com"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-opacity hover:opacity-90 cursor-pointer"
-            >
-              <Mail aria-hidden="true" className="size-4" />
-              Email me
-            </a>
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
-            >
-              <Link2 aria-hidden="true" className="size-4" />
-              LinkedIn
-              <ArrowUpRight
-                aria-hidden="true"
-                className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </a>
-            <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-              <MapPin aria-hidden="true" className="size-4" />
-              Maharashtra, India
-            </span>
+      {/* Interlude */}
+      <section className="interlude">
+        <div className="wrap interlude-grid">
+          <figure className="interlude-media">
+            <img src={PORTRAIT_URL} alt="Portrait of CA Motashim Badshah" />
+            <span className="sheen" aria-hidden="true" />
+          </figure>
+          <div className="interlude-text">
+            <div className="rd-eyebrow">How I work</div>
+            <p className="big">
+              Diagnose. Clean up. Close. <em>Report.</em>
+            </p>
+            <p className="sub">
+              A fixed monthly rhythm behind steady, audit-ready books — the
+              same four steps, every engagement.
+            </p>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6">
-        <SiteFooter />
-      </div>
+      {/* Services */}
+      <section id="services" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">03</span>
+            <span className="label">Services</span>
+            <span className="line" />
+          </div>
+          <KineticText as="h2" className="sec-title">
+            {"Less about filing, "}
+            <span className="mark">
+              <em>more about impact.</em>
+              <DoodleUnderline />
+            </span>
+          </KineticText>
+          <motion.div
+            className="work-grid"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={gridVariants}
+          >
+            {services.map((service, i) => (
+              <motion.div className="work-cell" key={service.title} variants={itemVariants}>
+                <div className="n">{String(i + 1).padStart(2, "0")}</div>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="stats-band" aria-label="At a glance">
+        <div className="wrap">
+          {stats.map((stat) => (
+            <div className="stat-item" key={stat.label}>
+              <div className="num">
+                <AnimatedStat value={stat.value} />
+              </div>
+              <div className="lbl">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Toolkit */}
+      <section id="toolkit" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">04</span>
+            <span className="label">Toolkit</span>
+            <span className="line" />
+          </div>
+          <div className="toolset">
+            {toolGroups.map((group) => (
+              <ToolCard
+                key={group.title}
+                icon={group.icon}
+                title={group.title}
+                items={group.items}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Credentials */}
+      <section id="certs" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">05</span>
+            <span className="label">Credentials</span>
+            <span className="line" />
+            <Sparkle style={{ width: 18, height: 18, top: -13, right: 0 }} />
+          </div>
+          <div className="cert-wrap">
+            <div className="certs">
+              {credentials.map((item, i) => (
+                <div className="cert-row" key={item.title}>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <span className="issuer">{item.issuer}</span>
+                  </div>
+                  <span className="idx">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+              ))}
+            </div>
+            <figure className="cert-photo">
+              <img src={PORTRAIT_URL} alt="Portrait of CA Motashim Badshah" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="rd-contact">
+        <div className="wrap">
+          <div className="rd-eyebrow">06 &middot; Contact</div>
+          <KineticText as="h2">
+            {"Late reports and messy books are "}
+            <span className="mark">
+              <em>fixable.</em>
+              <DoodleUnderline />
+            </span>
+          </KineticText>
+          <p className="lead">
+            Tell me where things stand — no prepared numbers required. A
+            short call is usually enough to see what the clean-up involves
+            and how quickly we can get you current.
+          </p>
+          <div className="contact-links">
+            <Magnetic href="mailto:aca.mohtashim@gmail.com" className="clink">
+              <Mail aria-hidden="true" size={17} />
+              Email
+            </Magnetic>
+            <Magnetic
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="clink"
+            >
+              <Link2 aria-hidden="true" size={17} />
+              LinkedIn
+            </Magnetic>
+            <span className="clink" style={{ cursor: "default" }}>
+              <MapPin aria-hidden="true" size={17} />
+              Maharashtra, India
+            </span>
+          </div>
+
+          <svg
+            className="contact-art"
+            viewBox="0 0 220 180"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={3.4}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M206 22 L40 92 L104 116 L122 172 L142 118 Z"
+              fill="rgba(255,255,255,.06)"
+            />
+            <path d="M206 22 L104 116" />
+            <path d="M104 116 L122 172" />
+            <path
+              d="M26 152 C52 152 58 120 32 114"
+              strokeDasharray="1 11"
+              opacity={0.6}
+            />
+          </svg>
+
+          <SiteFooter />
+        </div>
+      </section>
+
+      <BackToTop />
     </div>
   );
 }
