@@ -1,11 +1,14 @@
 import { motion } from "motion/react";
 import {
+  ArrowRight,
   ArrowUpRight,
   BarChart3,
   Building2,
   Calculator,
   ClipboardCheck,
   Globe2,
+  HardHat,
+  Home,
   Landmark,
   LineChart,
   Link2,
@@ -17,7 +20,9 @@ import {
   ReceiptText,
   Settings2,
   ShieldCheck,
+  ShoppingCart,
   TrendingUp,
+  UtensilsCrossed,
   Workflow,
 } from "lucide-react";
 import AnimatedStat from "./_components/animated-stat.tsx";
@@ -57,18 +62,18 @@ const itemVariants = {
 const tickerItems = [
   "Bookkeeping & Reconciliation",
   "Financial Modelling",
-  "Finance Operations",
+  "Virtual CFO",
   "MIS & Reporting",
   "Process Design",
   "Automation",
-  "Tax & GST Audit",
+  "Job Costing",
 ];
 
 const stats = [
   { value: "13+", label: "Years across practice, banking, and industry" },
-  { value: "70%", label: "Faster GST return filing" },
+  { value: "90%", label: "Drop in vendor invoice disputes" },
   { value: "60%", label: "Faster monthly close and reporting" },
-  { value: "3", label: "Regions served: India, US, Middle East" },
+  { value: "3", label: "Regions served: US, UK, Australia" },
 ];
 
 const services = [
@@ -82,7 +87,7 @@ const services = [
     icon: Building2,
     title: "Construction & project accounting",
     description:
-      "Job costing, WIP schedules, and project accounting built for how contractors actually work — by site, by stage, by margin.",
+      "Job costing, progress billing, retainage, and WIP schedules built for how contractors actually work — currently closing 35 project sites monthly.",
   },
   {
     icon: Landmark,
@@ -104,7 +109,7 @@ const services = [
   },
   {
     icon: Settings2,
-    title: "ERP & workflow automation (QuickBooks / NetSuite)",
+    title: "ERP & workflow automation (QuickBooks / Xero / NetSuite)",
     description:
       "Setup, migration, and automated workflows — from ERP configuration to Power BI dashboards — that take manual re-entry off your team's plate instead of adding to it.",
   },
@@ -128,9 +133,9 @@ const services = [
   },
   {
     icon: ReceiptText,
-    title: "Tax & GST audit support",
+    title: "Tax & statutory audit support",
     description:
-      "Income tax and GST audits for proprietors and partnerships, handled end to end. You sign; I handle the rest.",
+      "Income tax and statutory audits for proprietors and partnerships, handled end to end. You sign; I handle the rest.",
   },
   {
     icon: TrendingUp,
@@ -146,7 +151,7 @@ const experience = [
     role: "Owner & Partner, Accounts & Finance",
     company: "Motashim Husain & Company",
     description:
-      "Accounting, finalisation, tax and GST audits, budgeting and forecasting for business owners. Cut monthly GST filing turnaround by 70% through automation and disciplined reconciliation.",
+      "Accounting, finalisation, tax audits, budgeting and forecasting for business owners. Cut monthly filing turnaround by 70% through automation and disciplined reconciliation.",
   },
   {
     period: "2022 — 2023",
@@ -187,7 +192,7 @@ const experience = [
 
 const credentials = [
   {
-    title: "Chartered Accountant",
+    title: "Chartered Accountant (Indian CPA)",
     issuer: "The Institute of Chartered Accountants of India",
     year: "2012",
   },
@@ -195,6 +200,21 @@ const credentials = [
     title: "Dip IFR — International Financial Reporting",
     issuer: "ACCA, London",
     year: "2015",
+  },
+  {
+    title: "Certified QuickBooks ProAdvisor",
+    issuer: "Intuit",
+    year: "Active",
+  },
+  {
+    title: "Certified Xero Advisor",
+    issuer: "Xero",
+    year: "Active",
+  },
+  {
+    title: "Upwork Top Rated Plus",
+    issuer: "Upwork",
+    year: "Active",
   },
   {
     title: "Bachelor of Business Administration, Accounting",
@@ -212,7 +232,7 @@ const toolGroups = [
   {
     icon: Landmark,
     title: "Accounting Software",
-    items: "QuickBooks · NetSuite",
+    items: "QuickBooks · Xero · NetSuite",
   },
   {
     icon: NotebookText,
@@ -220,9 +240,14 @@ const toolGroups = [
     items: "Tally",
   },
   {
+    icon: Home,
+    title: "Property Management",
+    items: "Buildium · Rent Manager",
+  },
+  {
     icon: ShieldCheck,
     title: "Compliance & Reporting",
-    items: "IAS / IFRS · GST",
+    items: "IAS / IFRS",
   },
   {
     icon: BarChart3,
@@ -239,6 +264,108 @@ const toolGroups = [
     title: "Process & Automation",
     items: "Documented close calendars, automated workflows",
   },
+];
+
+const clientVerticals = [
+  {
+    icon: HardHat,
+    title: "Construction & EPC",
+    description:
+      "Job costing, progress billing, retainage, and WIP — 35 project sites closed monthly.",
+  },
+  {
+    icon: Home,
+    title: "Real Estate & Rentals",
+    description:
+      "Tenant income, owner statements, and expense allocation — Buildium & Rent Manager.",
+  },
+  {
+    icon: UtensilsCrossed,
+    title: "Restaurants & Hospitality",
+    description:
+      "Chart of accounts rebuild, cost analysis, and QuickBooks Online implementation.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "eCommerce & SaaS",
+    description:
+      "SKU-level margin analysis, platform reconciliations, and inventory accounting.",
+  },
+];
+
+const accrualCapabilities = [
+  "Accruals, prepaids, and deferred revenue — recognized by period, not deposit date",
+  "WIP schedules and percentage-of-completion for contract work",
+  "Fixed asset register, depreciation, and GL scrutiny",
+  "Month-end journals, variance analysis, and budget vs. actual",
+];
+
+type CaseStudy = {
+  tag: string;
+  title: string;
+  situation: string;
+  points: string[];
+  result: string;
+  stat?: string;
+  statLabel?: string;
+};
+
+const caseStudies: CaseStudy[] = [
+  {
+    tag: "Construction",
+    title: "Job costing for a US general contractor",
+    situation:
+      "No reliable view of margin by project. Costs and financials were reactive and disconnected.",
+    points: [
+      "Cost code framework: labour, subs, materials, overhead",
+      "QuickBooks Online ↔ field CRM workflow — costs flowed without manual re-entry",
+      "Weekly job-level P&L and budget vs. actual",
+      "Monthly dashboard: cash flow, AR/AP aging, gross & net profit",
+    ],
+    result:
+      "The owner moved from reactive bookkeeping to knowing project margin while the job was still open.",
+  },
+  {
+    tag: "Accounts Payable",
+    title: "Fixing AP before it reaches the ledger",
+    situation:
+      "Dozens of vendors and freelancers. Incorrect invoices arriving constantly — endless correction cycles and payment delays.",
+    points: [
+      "Issued vendors a pre-verified schedule of billable items and amounts each cycle",
+      "Vendors reviewed, raised queries, then invoiced against agreed figures",
+    ],
+    result:
+      "AP cycle became fully predictable. Fix the input, not the output.",
+    stat: "~90%",
+    statLabel: "Drop in disputes",
+  },
+];
+
+const deliveryPhases = [
+  {
+    step: "01",
+    when: "Days 1 – 30",
+    description:
+      "Absorb client files, document the actual close process, clear backlog, and flag cash-basis files hiding real problems.",
+  },
+  {
+    step: "02",
+    when: "Days 30 – 60",
+    description:
+      "Standardize the close checklist, introduce accrual and job costing where needed, and build reporting packs ready for client delivery.",
+  },
+  {
+    step: "03",
+    when: "Ongoing",
+    description:
+      "20 hours a week to start, expanding to full time. Async-first, with daily check-ins during Eastern Time overlap.",
+  },
+];
+
+const deliveryTraits = [
+  { title: "Reliable", description: "Deadlines met, no chasing." },
+  { title: "Documented", description: "Every method written so it scales." },
+  { title: "Quiet", description: "The way a well-run book should be." },
 ];
 
 export default function Index() {
@@ -261,7 +388,7 @@ export default function Index() {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="rd-eyebrow"
             >
-              Chartered Accountant
+              Chartered Accountant &middot; Virtual CFO
             </motion.p>
             <KineticText as="h1" className="hero-h1">
               {"The complete "}
@@ -342,12 +469,16 @@ export default function Index() {
                   <dd>Chartered Accountant</dd>
                 </div>
                 <div>
+                  <dt>Focus</dt>
+                  <dd>Virtual CFO</dd>
+                </div>
+                <div>
                   <dt>Practice</dt>
                   <dd>Motashim Husain &amp; Company</dd>
                 </div>
                 <div>
                   <dt>Regions</dt>
-                  <dd>India · US · Middle East</dd>
+                  <dd>US · UK · Australia</dd>
                 </div>
               </dl>
             </aside>
@@ -446,6 +577,76 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Client Verticals */}
+      <section id="verticals" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">04</span>
+            <span className="label">Client Base</span>
+            <span className="line" />
+          </div>
+          <KineticText as="h2" className="sec-title">
+            {"Running several client types "}
+            <span className="mark">
+              <em>at once.</em>
+              <DoodleUnderline />
+            </span>
+          </KineticText>
+          <motion.div
+            className="work-grid"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={gridVariants}
+          >
+            {clientVerticals.map((vertical) => (
+              <motion.div className="work-cell" key={vertical.title} variants={itemVariants}>
+                <vertical.icon aria-hidden="true" className="cell-icon" size={22} />
+                <h3 style={{ marginTop: 16 }}>{vertical.title}</h3>
+                <p>{vertical.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Accrual Accounting */}
+      <section id="accrual" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">05</span>
+            <span className="label">Accrual Accounting</span>
+            <span className="line" />
+          </div>
+          <KineticText as="h2" className="sec-title">
+            {"Accrual is my "}
+            <span className="mark">
+              <em>default setting.</em>
+              <DoodleUnderline />
+            </span>
+          </KineticText>
+          <div className="accrual-grid">
+            <div className="accrual-list">
+              {accrualCapabilities.map((item) => (
+                <div className="accrual-item" key={item}>
+                  <ArrowRight aria-hidden="true" className="arrow" size={18} />
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+            <div className="accrual-why">
+              <h4>Why it matters</h4>
+              <p>
+                Most clients sit on cash basis today. I identify who
+                genuinely benefits from accrual, run the conversion cleanly,
+                and document the method — so the next person on the file
+                doesn&apos;t have to reverse-engineer it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Stats */}
       <section className="stats-band" aria-label="At a glance">
         <div className="wrap">
@@ -460,11 +661,55 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Case Studies */}
+      <section id="case-studies" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">06</span>
+            <span className="label">Case Studies</span>
+            <span className="line" />
+          </div>
+          <KineticText as="h2" className="sec-title">
+            {"Proof, not "}
+            <span className="mark">
+              <em>promises.</em>
+              <DoodleUnderline />
+            </span>
+          </KineticText>
+          <div className="case-studies">
+            {caseStudies.map((study) => (
+              <div className="case-study" key={study.title}>
+                <div>
+                  <span className="case-study-tag">{study.tag}</span>
+                  <h3>{study.title}</h3>
+                  <p className="situation">{study.situation}</p>
+                  <p className="result">{study.result}</p>
+                  {study.stat && (
+                    <div className="stat-callout">
+                      <div className="big-num">{study.stat}</div>
+                      <div className="stat-lbl">{study.statLabel}</div>
+                    </div>
+                  )}
+                </div>
+                <div className="case-study-points">
+                  {study.points.map((point, i) => (
+                    <div key={point}>
+                      <span className="pt-n">{String(i + 1).padStart(2, "0")}</span>
+                      <p>{point}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Toolkit */}
       <section id="toolkit" className="rd-sec">
         <div className="wrap">
           <div className="sec-head">
-            <span className="num">04</span>
+            <span className="num">07</span>
             <span className="label">Toolkit</span>
             <span className="line" />
           </div>
@@ -481,11 +726,39 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Delivery */}
+      <section id="delivery" className="rd-sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="num">08</span>
+            <span className="label">How I&apos;d Run Delivery</span>
+            <span className="line" />
+          </div>
+          <div className="delivery-track">
+            {deliveryPhases.map((phase) => (
+              <div className="delivery-phase" key={phase.step}>
+                <span className="step">{phase.step}</span>
+                <span className="when">{phase.when}</span>
+                <p>{phase.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="delivery-traits">
+            {deliveryTraits.map((trait) => (
+              <div className="delivery-trait" key={trait.title}>
+                <h4>{trait.title}</h4>
+                <p>{trait.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Credentials */}
       <section id="certs" className="rd-sec">
         <div className="wrap">
           <div className="sec-head">
-            <span className="num">05</span>
+            <span className="num">09</span>
             <span className="label">Credentials</span>
             <span className="line" />
             <Sparkle style={{ width: 18, height: 18, top: -13, right: 0 }} />
@@ -512,7 +785,7 @@ export default function Index() {
       {/* Contact */}
       <section id="contact" className="rd-contact">
         <div className="wrap">
-          <div className="rd-eyebrow">06 &middot; Contact</div>
+          <div className="rd-eyebrow">10 &middot; Contact</div>
           <KineticText as="h2">
             {"Late reports and messy books are "}
             <span className="mark">
